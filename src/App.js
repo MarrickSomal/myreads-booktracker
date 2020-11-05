@@ -9,16 +9,24 @@ import { Link } from 'react-router-dom'
 class BooksApp extends Component {
 
   state = {
-    books: []
+    books: [],
+    query: ''
   }
 
-  componentDidMount() {
+  /*componentDidMount() {
     BooksAPI.getAll()
       .then((books) => {
         this.setState(() => ({
           books
         }))
       })
+    }
+    */
+
+    updateQuery = (query) => {
+      this.setState(() => ({
+        query: query.trim()
+      }))
     }
 
   render() {
@@ -34,6 +42,9 @@ class BooksApp extends Component {
               >Close </Link>
               </button>
               <div className="search-books-input-wrapper">
+              {JSON.stringify(this.state)}
+
+
                 {/*
                   NOTES: The search from BooksAPI is limited to a particular set of search terms.
                   You can find these search terms here:
@@ -42,8 +53,13 @@ class BooksApp extends Component {
                   However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
                   you don't find a specific author or title. Every search is limited by search terms.
                 */}
-                <input type="text" placeholder="Search by title or author"/>
-
+                <input 
+                className="search-books-input"
+                type="text" 
+                placeholder="Search by title or author"
+                value= {this.state.query}
+                onChange={(event) => this.updateQuery(event.target.value)}
+                />
               </div>
             </div>
             <div className="search-books-results">
