@@ -34,6 +34,18 @@ class BooksApp extends Component {
     }
 
   render() {
+
+    const { books, query } = this.state
+
+    /*only include the books whose name, after we've invoked toLowerCase on it includes 
+      whatever the query is*/
+
+      const showingBooks = query === ''
+      ? books
+      : books.filter((b) => (
+          b.title.toLowerCase().includes(query.toLowerCase())
+        ))
+
     return (
       <div className="app">
         <Route path= '/search' render ={() => (
@@ -59,14 +71,14 @@ class BooksApp extends Component {
                 className="search-books-input"
                 type="text" 
                 placeholder="Search by title or author"
-                value= {this.state.query}
+                value= {query}
                 onChange={(event) => this.updateQuery(event.target.value)}
                 />
               </div>
             </div>
             <div className="search-books-results">
               <ol className="books-grid">
-              {this.state.books.map((book) => (
+              {showingBooks.map((book) => (
               <li key={book.id}>
               <div className="book">
               <div className='book-top'>
