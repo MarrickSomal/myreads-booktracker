@@ -3,17 +3,22 @@ import * as BooksAPI from './BooksAPI'
 import './App.css'
 import { Route } from 'react-router-dom'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types';
+
 
 
 
 class BooksApp extends Component {
+  static propTypes = {
+    books: PropTypes.array.isRequired
+  }
 
   state = {
     books: [],
     query: ''
   }
 
-  /*componentDidMount() {
+  componentDidMount() {
     BooksAPI.getAll()
       .then((books) => {
         this.setState(() => ({
@@ -21,7 +26,6 @@ class BooksApp extends Component {
         }))
       })
     }
-    */
 
     updateQuery = (query) => {
       this.setState(() => ({
@@ -42,8 +46,6 @@ class BooksApp extends Component {
               >Close </Link>
               </button>
               <div className="search-books-input-wrapper">
-              {JSON.stringify(this.state)}
-
 
                 {/*
                   NOTES: The search from BooksAPI is limited to a particular set of search terms.
@@ -63,7 +65,19 @@ class BooksApp extends Component {
               </div>
             </div>
             <div className="search-books-results">
-              <ol className="books-grid"></ol>
+              <ol className="books-grid">
+              {this.state.books.map((book) => (
+              <li key={book.id}>
+              <div className="book">
+              <div className='book-top'>
+              <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
+              </div>
+              <div className="book-title">{book.title}</div>
+              <div className="book-authors">{book.authors}</div>
+              </div>
+              </li>
+              ))}
+              </ol>
             </div>
           </div>
         )} />
