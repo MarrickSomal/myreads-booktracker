@@ -27,24 +27,36 @@ class BooksApp extends Component {
       })
     }
 
-    updateQuery = (query) => {
+      /* 
+        When the user enters text into the input field
+        the onChange event listener invokes the updateQuery() function.
+        updateQuery() then calls setState(), merging in the new state to update the component's internal state, causing the component to rerender 
+        updateQuery() also calls the filterBooks() function
+      */
+    
+      updateQuery = (query) => {
       this.setState(() => ({
         query: query
       }))
+      this.filterBooks(query)
+    }
+
+
+    //filterBooks function retrieves all books relevant to a valid searched query
+    filterBooks = (query) => {
+      /*If the user's query does not match with the book data from the database 
+      or is not valid then the state of 'books' is set as an empty array */
+
+      if (query) {
+        BooksAPI.search(query).then((bookData) => this.setState({ books: (bookData.error ? [] : bookData) }))
+      } else {
+        this.setState({books:[]})
+      }
     }
 
   render() {
 
     const { books, query } = this.state
-
-    /*only include the books whose name, after we've invoked toLowerCase on it includes 
-      whatever the query is*/
-
-      const showingBooks = query === ''
-      ? books
-      : books.filter((b) => (
-          b.title.toLowerCase().includes(query.toLowerCase())
-        ))
 
     return (
       <div className="app">
@@ -78,7 +90,7 @@ class BooksApp extends Component {
             </div>
             <div className="search-books-results">
               <ol className="books-grid">
-              {showingBooks.map((book) => (
+              {books.map((book) => (
               <li key={book.id}>
               <div className="book">
               <div className='book-top'>
