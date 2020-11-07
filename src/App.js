@@ -4,7 +4,7 @@ import './App.css'
 import { Route } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types';
-
+import {DebounceInput} from 'react-debounce-input';
 
 
 
@@ -39,10 +39,10 @@ class BooksApp extends Component {
         query: query
       }))
       this.filterBooks(query)
-    }
-
+    };
 
     //filterBooks function retrieves all books relevant to a valid searched query
+        
     filterBooks = (query) => {
       /*If the user's query does not match with the book data from the database 
       or is not valid then the state of 'books' is set as an empty array */
@@ -53,6 +53,8 @@ class BooksApp extends Component {
         this.setState({books:[]})
       }
     }
+
+
 
   render() {
 
@@ -79,10 +81,10 @@ class BooksApp extends Component {
                   However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
                   you don't find a specific author or title. Every search is limited by search terms.
                 */}
-                <input 
+                <DebounceInput 
                 className="search-books-input"
-                type="text" 
                 placeholder="Search by title or author"
+                debounceTimeout={500}
                 value= {query}
                 onChange={(event) => this.updateQuery(event.target.value)}
                 />
