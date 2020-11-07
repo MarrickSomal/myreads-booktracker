@@ -54,6 +54,13 @@ class BooksApp extends Component {
       }
     }
 
+    /* function sets search query and search results to empty when the user clicks on the link to the main page
+  this means prior search results and queries are not shown if the user clicks on the search page in the future*/
+    clearSearchPage = () => {
+      this.setState({books:[]})
+      this.setState({query:''})
+      }
+
 
 
   render() {
@@ -69,6 +76,7 @@ class BooksApp extends Component {
               <Link 
               to= '/main'
               className="close-search"
+              onClick={(event) => this.clearSearchPage(event.target.value)}
               >Close </Link>
               </button>
               <div className="search-books-input-wrapper">
