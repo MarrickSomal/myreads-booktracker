@@ -109,7 +109,7 @@ class BooksApp extends Component {
               </div>
               <div className="book-title">{book.title}</div>
               {/* ternary conditional added below: if authors data is empty for a book then show nothing, otherwise show the authors value   */}
-              <div className="book-authors">{((book.authors) ? book.authors : "")}</div>
+              <div className="book-authors">{((book.authors) ? book.authors.join(', ') : "")}</div>
               </div>
               </li>
               ))}
@@ -123,7 +123,7 @@ class BooksApp extends Component {
               <h1>MyReads</h1>
             </div>
             <div className="list-books-content">
-              <div>
+              <div>  
                 <div className="bookshelf">
                   <h2 className="bookshelf-title">Currently Reading</h2>
                   <div className="bookshelf-books">
