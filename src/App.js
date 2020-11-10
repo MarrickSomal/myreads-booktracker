@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
+import SearchBooks from './components/SearchBooks'
 import { Route } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types';
-import {DebounceInput} from 'react-debounce-input';
-
 
 
 class BooksApp extends Component {
@@ -14,8 +13,7 @@ class BooksApp extends Component {
   }
 
   state = {
-    books: [],
-    query: ''
+    searchPageBooks: [],
   }
 
   componentDidMount() {
@@ -27,20 +25,6 @@ class BooksApp extends Component {
       })
     }
 
-      /* 
-        When the user enters text into the input field
-        the onChange event listener invokes the updateQuery() function.
-        updateQuery() then calls setState(), merging in the new state to update the component's internal state, causing the component to rerender 
-        updateQuery() also calls the filterBooks() function
-      */
-    
-      updateQuery = (query) => {
-      this.setState(() => ({
-        query: query
-      }))
-      this.filterBooks(query)
-    };
-
     //filterBooks function retrieves all books relevant to a valid searched query
         
     filterBooks = (query) => {
@@ -48,74 +32,30 @@ class BooksApp extends Component {
       or is not valid then the state of 'books' is set as an empty array */
 
       if (query) {
-        BooksAPI.search(query).then((bookData) => this.setState({ books: (bookData.error ? [] : bookData) }))
+        BooksAPI.search(query).then((bookData) => this.setState({ searchPageBooks: (bookData.error ? [] : bookData) }))
       } else {
-        this.setState({books:[]})
+        this.setState({searchPageBooks:[]})
       }
     }
 
     /* function sets search query and search results to empty when the user clicks on the link to the main page
   this means prior search results and queries are not shown if the user clicks on the search page in the future*/
-    clearSearchPage = () => {
-      this.setState({books:[]})
-      this.setState({query:''})
-      }
-
+  clearSearchPage = () => {
+    this.setState({searchPageBooks:[]})
+    this.setState({query:''})
+    }
 
 
   render() {
 
-    const { books, query } = this.state
-
     return (
       <div className="app">
         <Route path= '/search' render ={() => (
-          <div className="search-books">
-            <div className="search-books-bar">
-              <button>
-              <Link 
-              to= '/main'
-              className="close-search"
-              onClick={(event) => this.clearSearchPage(event.target.value)}
-              >Close </Link>
-              </button>
-              <div className="search-books-input-wrapper">
-
-                {/*
-                  NOTES: The search from BooksAPI is limited to a particular set of search terms.
-                  You can find these search terms here:
-                  https://github.com/udacity/reactnd-project-myreads-starter/blob/master/SEARCH_TERMS.md
-
-                  However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
-                  you don't find a specific author or title. Every search is limited by search terms.
-                */}
-                <DebounceInput 
-                className="search-books-input"
-                placeholder="Search by title or author"
-                debounceTimeout={500}
-                value= {query}
-                onChange={(event) => this.updateQuery(event.target.value)}
-                />
-              </div>
-            </div>
-            <div className="search-books-results">
-              <ol className="books-grid">
-              {books.map((book) => (
-              <li key={book.id}>
-              <div className="book">
-              <div className='book-top'>
-                {/* ternary conditional added below: if imageLinks data is empty for a book then show nothing, otherwise show the thumbnail value   */}
-              <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: ((book.imageLinks) ? `url(${book.imageLinks.thumbnail})` : "") }}></div>
-              </div>
-              <div className="book-title">{book.title}</div>
-              {/* ternary conditional added below: if authors data is empty for a book then show nothing, otherwise show the authors value   */}
-              <div className="book-authors">{((book.authors) ? book.authors.join(', ') : "")}</div>
-              </div>
-              </li>
-              ))}
-              </ol>
-            </div>
-          </div>
+          <SearchBooks 
+          startSearch={this.filterBooks}
+          resetSearch = {this.clearSearchPage}
+          searchPageBooks = {this.state.searchPageBooks}
+          />
         )} />
         <Route path='/main' render={() => (
           <div className="list-books">
