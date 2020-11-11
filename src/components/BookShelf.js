@@ -5,7 +5,7 @@ class BookShelf extends Component {
 
     render() {
 
-      const { userBooks, shelf } = this.props;
+      const { userBooks, shelf, updateBookShelf } = this.props;
 
 
       /* filter the book list by the books that having a corresponding shelf designated to */
@@ -22,6 +22,7 @@ class BookShelf extends Component {
                     key = {book.id}  
                     book = {book}
                     shelf= {shelf.key}
+                    updateBookShelf = {updateBookShelf}
                   />
                   ))}
                 </ol>

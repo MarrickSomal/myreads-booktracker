@@ -7,7 +7,7 @@ class Book extends Component {
 
     render() {
 
-        const { book, shelf } = this.props
+        const { book, shelf, updateBookShelf } = this.props
 
        return (
         <li>
@@ -27,6 +27,7 @@ class Book extends Component {
                         <BookShelfChanger
                         book = {book}
                         shelf = {shelf}
+                        updateBookShelf={updateBookShelf}
                         />
                 </div>
             <div className="book-title">{book.title}</div>

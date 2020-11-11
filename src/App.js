@@ -33,6 +33,13 @@ class BooksApp extends Component {
       })
     }
 
+    // function to handle updating a book's shelf
+
+  updateBookShelf = (book, shelf) => {
+    BooksAPI.update(book, shelf);
+    BooksAPI.getAll().then(userBooks => this.setState({ userBooks }))
+    }
+
     //filterBooks function retrieves all books relevant to a valid searched query
         
     filterBooks = (query) => {
@@ -75,6 +82,7 @@ class BooksApp extends Component {
           <ListBooks
             userBooks = {userBooks}
             bookshelves = {bookshelves}
+            updateBookShelf={this.updateBookShelf}
           />
           )}
         />
