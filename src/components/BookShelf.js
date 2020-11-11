@@ -8,7 +8,8 @@ class BookShelf extends Component {
       const { userBooks, shelf } = this.props;
 
 
-      /* filter the book list by the books that having a corresponding shelf designated to them */
+      /* filter the book list by the books that having a corresponding shelf designated to */
+
       const booksOnShelf = userBooks.filter(book => book.shelf === shelf.key);
 
         return (
@@ -19,7 +20,7 @@ class BookShelf extends Component {
                 {booksOnShelf.map((book) => (
                   <Book 
                     key = {book.id}  
-                    book = {userBooks}
+                    book = {book}
                     shelf= {shelf.key}
                   />
                   ))}

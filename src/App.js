@@ -26,9 +26,9 @@ class BooksApp extends Component {
 
   componentDidMount() {
     BooksAPI.getAll()
-      .then((books) => {
+      .then((userBooks) => {
         this.setState(() => ({
-          books
+          userBooks
         }))
       })
     }
