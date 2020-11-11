@@ -73,7 +73,7 @@ class BooksApp extends Component {
           exact path='/' 
           render={() => (
           <ListBooks
-            books = {userBooks}
+            userBooks = {userBooks}
             bookshelves = {bookshelves}
           />
           )}

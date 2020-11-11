@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Bookshelf from './Bookshelf';
+import BookShelf from './BookShelf';
 
 class ListBooks extends Component {
   render() {
-    const { bookshelves, books } = this.props;
+    const { bookshelves, userBooks } = this.props;
     return (
       <div className="list-books">
         <div className="list-books-title">
@@ -13,10 +13,10 @@ class ListBooks extends Component {
         <div className="list-books-content">
           <div>
             {bookshelves.map(shelf => (
-              <Bookshelf
+              <BookShelf
                 key={shelf.key}
                 shelf={shelf}
-                books={books}
+                userBooks={userBooks}
               />
             ))}
           </div>
