@@ -6,13 +6,17 @@ class SearchResults extends Component {
 
     render() {
 
+        const { searchPageBooks, updateBookShelf } = this.props
+
         return (
             <div className="search-books-results">
             <ol className="books-grid">
-            {this.props.searchPageBooks.map((book) => (
+            {searchPageBooks.map((book) => (
                 <Book
                 key={book.id}
                 book={book}
+                shelf = {book.shelf}
+                updateBookShelf={updateBookShelf}
                 />
             ))}
             </ol>

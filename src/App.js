@@ -73,6 +73,7 @@ class BooksApp extends Component {
             <SearchBooks 
             startSearch={this.filterBooks}
             resetSearch = {this.clearSearchPage}
+            updateBookShelf={this.updateBookShelf}
             searchPageBooks = {searchPageBooks}
             />
         )} />

@@ -13,7 +13,8 @@ render() {
     const {
         resetSearch,
         startSearch,
-        searchPageBooks
+        searchPageBooks,
+        updateBookShelf
     } = this.props;
 
     return (
@@ -33,6 +34,7 @@ render() {
           </div>
           <SearchResults
           searchPageBooks = {searchPageBooks}
+          updateBookShelf={updateBookShelf}
           />
         </div> 
 
