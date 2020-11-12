@@ -22,7 +22,7 @@ render() {
         <div className="search-books-bar">
         <button>
         <Link 
-        to= '/main'
+        to= '/'
         className="close-search"
         onClick={resetSearch}
         >Close 
