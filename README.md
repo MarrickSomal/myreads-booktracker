@@ -3,7 +3,9 @@
 MyReads is a simple app which allows you to search for books based on title and author, as well as catalogue books by placing them in one of three shelves:
 
 Currently Reading
+
 Want to Read
+
 Read
 
 ## Getting started
