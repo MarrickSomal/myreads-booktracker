@@ -8,7 +8,8 @@ Read
 
 ## Getting started
 
-clone the repository with $ git clone https://github.com/MarrickSomal/myreads-booktracker.git
-install all project dependencies with $ npm install
-start the development server with $ npm start
-A development server will be started and the App will be launched in your default browser at localhost:3000
+•	Clone the repository with $ git clone https://github.com/MarrickSomal/myreads-booktracker.git
+•	Install all project dependencies with $ npm install
+•	Start the development server with $ npm start
+•	A development server will be started and the App will be launched in your default browser at localhost:3000
+
