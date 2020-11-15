@@ -14,6 +14,7 @@ render() {
         resetSearch,
         startSearch,
         searchPageBooks,
+        userBooks,
         updateBookShelf
     } = this.props;
 
