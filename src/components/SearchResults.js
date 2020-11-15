@@ -7,19 +7,21 @@ class SearchResults extends Component {
     render() {
 
         const { searchPageBooks, userBooks, updateBookShelf } = this.props
-        const displayBookShelves = searchPageBooks.map(book => {
+        const reflectBookShelves = searchPageBooks.map(book => {
     userBooks.map(d => {
       if (d.id === book.id) {
-        book.shelf = b.shelf;
+        book.shelf = d.shelf;
       }
       return d;
     });
     return book;
 
+  });
+
         return (
             <div className="search-books-results">
             <ol className="books-grid">
-            {searchPageBooks.map((book) => (
+            {reflectBookShelves.map((book) => (
                 <Book
                 key={book.id}
                 book={book}
