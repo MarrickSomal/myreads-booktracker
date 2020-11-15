@@ -34,6 +34,7 @@ render() {
           </div>
           <SearchResults
           searchPageBooks = {searchPageBooks}
+          userBooks = {userBooks}
           updateBookShelf={updateBookShelf}
           />
         </div> 

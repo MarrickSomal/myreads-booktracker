@@ -75,6 +75,7 @@ class BooksApp extends Component {
             resetSearch = {this.clearSearchPage}
             updateBookShelf={this.updateBookShelf}
             searchPageBooks = {searchPageBooks}
+            userBooks = {userBooks}
             />
         )} />
         <Route 

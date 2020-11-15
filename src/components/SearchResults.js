@@ -6,7 +6,15 @@ class SearchResults extends Component {
 
     render() {
 
-        const { searchPageBooks, updateBookShelf } = this.props
+        const { searchPageBooks, userBooks, updateBookShelf } = this.props
+        const displayBookShelves = searchPageBooks.map(book => {
+    userBooks.map(d => {
+      if (d.id === book.id) {
+        book.shelf = b.shelf;
+      }
+      return d;
+    });
+    return book;
 
         return (
             <div className="search-books-results">
