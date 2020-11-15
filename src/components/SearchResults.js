@@ -7,6 +7,11 @@ class SearchResults extends Component {
     render() {
 
         const { searchPageBooks, userBooks, updateBookShelf } = this.props
+        
+        /*the below function (stored in the variable reflectBookShelves) maps over 
+        the books in search results and for each book it then maps over any added books.
+        If there is a match the shelf property is set. */
+
         const reflectBookShelves = searchPageBooks.map(book => {
     userBooks.map(d => {
       if (d.id === book.id) {
