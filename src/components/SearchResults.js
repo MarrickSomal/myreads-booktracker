@@ -15,7 +15,7 @@ class SearchResults extends Component {
                 <Book
                 key={book.id}
                 book={book}
-                shelf = {book.shelf}
+                shelf = {book.shelf ? book.shelf : "none"}
                 updateBookShelf={updateBookShelf}
                 />
             ))}
